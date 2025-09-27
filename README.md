@@ -1,249 +1,203 @@
-# Node.js E-Commerce API 
+# Node.js E-Commerce API (Dockerized)
 
-This full E-Commerce API build using Express and Mongo. Here it contains all the required functionalities of a full-fledged E-commerce API like User registration, User Login, Category Add, Edit & Delete, Product Add, Edit, Delete, Add product feature image & Add product images, Order creation and etc...
+This is a full-featured **E-Commerce API** built with **Node.js, Express,** and **MongoDB**, now fully **Dockerized** for easy deployment. It includes all essential e-commerce functionalities such as user authentication, product and category management, orders, and more.
 
-## Setup
- 
+## Features
+
+- User Registration & Login
+
+- Product CRUD (Create, Read, Update, Delete)
+
+- Category CRUD
+
+- Order Management
+
+- Product Gallery Upload
+
+- Featured Products
+
+- Sales & Order Reports
+
+- Dockerized setup for quick deployment
+
+## Technologies
+
+- Node.js & Express
+
+- MongoDB
+
+- Docker & Docker Compose
+
+- RESTful API design
+
+## Docker Compose Setup 
+
+Clone the repository:
 ```
-    $ git clone https://github.com/dinushchathurya/nodejs-ecommerce-api.git
-    $ cd nodejs-ecommerce-api
-    $ npm install
+git clone https://github.com/NahidCSERU/NODEJS-ECOMMERCE-API.git
+cd nodejs-ecommerce-api
 ```
-  - Duplicate and database.configexample.js as database.confi.js and fill in environment variables
 
-  ### Run The Service
-  ```
-  $ nodemon app.js
-  ```
-## API Endpoints
+## Environment Variables
 
-## User Routes
+Create a `.env` file in the root folder with the following variables:
+```
+PORT=3000
+MONGO_URI=your_mongo_uri_here
+SECRET=your_jwt_secret_here
+API_URL=/api/v1
+```
 
-### * Create User
+**Run the full stack with Docker Compose:**
+```
+docker-compose up -d
+```
 
-`POST |  /api/v1/users/register` 
+**This will start:**
+```
+API server on http://localhost:3000
 
-| Key       | Value          |
-| --------- | -----------    |
-| name      | Admin          |
-| email     | admin@admin.com|
-| password  | password       |
-| phone     | +947187520     |
-| isAdmin   | true           |
-| street    | Main Street    |
-| apartment | Block C        |
-| zip       | 10870          |
-| city      | Colombo        |
-| country   | SriLanka       |
+MongoDB database on default port 27017
+```
+**To stop the services:**
+```
+docker-compose down
+```
+## Testing API Endpoints with Postman
+###  Pre-requisites
+- Postman installed
+## Import Postman Collection
+- Open Postman.
 
-### * Login User
+- Import the collection file: Ecommerce-API.postman-collection.json
 
-`POST |  /api/v1/users/login` 
+## 1. Register User
 
-| Key        | Value          |
-| ---------  | -----------    |
-| email      | admin@admin.com|
-| password   | password       |
+- **Method:** POST
 
-### * Get Users
+- **URL**: `{{baseUrl}}/users/register`
 
-`GET |  /api/v1/users` 
-
-### * Get Single Users
-
-`GET |  /api/v1/users/{id}` 
-
-### * Delete User
-
-`DELETE |  /api/v1/users/{id}` 
-
-### * Get Users Count
-
-`GET |  /api/v1/users/get/count` 
-
-## Category Routes
-
-### * Create Category
-
-`POST |  /api/v1/categories` 
-
-| Key   | Value      |
-| ------| ---------- |
-| name  | Category 1 |
-| icon  | icon-health|
-| color | #55879     |
-
-### * Get Categories
-
-`GET |  /api/v1/categories` 
-
-### * Get Single Category
-
-`GET |  /api/v1/categories/{id}` 
-
-### * Update Category
-
-`PUT |  /api/v1/categories/{id}` 
-
-| Key   | Value      |
-| ------| ---------- |
-| name  | Category 1 |
-| icon  | icon-health|
-| color | #55879     |
-
-### * Delete Category
-
-`DELETE |  /api/v1/categories/{id}`
-
-## Product Routes
-
-### * Create Product
-
-`POST |  /api/v1/products` 
-
-| Key            | Value           |
-| ---------      | -----------     |
-| name           | Product 1       |
-| description    | Description     |
-| richDescription| Rich Description|
-| image          | image           |
-| brand          | Brand 1         |
-| price          | 50              |
-| category       | {category_id}   |
-| countInStock   | 100             |
-| rating         | 4.5             |
-| numReviews     | 40              |
-| isFeatured     | true            |
-
-### * Get Products
-
-`GET |  /api/v1/products` 
-
-###  * Get Single Category
-
-`GET |  /api/v1/products/{id}` 
-
-###  * Get Prodcut Counts
-
-`GET |  /api/v1/products/get/count` 
-
-###  * Get Featured Prodcut Counts
-
-`GET |  /api/v1/products/get/featured/{count}`
-
-### * Upload Galley Images
-
-`POST |  /api/v1/products/gallery-images/{id}`
-| Key            | Value           |
-| ---------      | -----------     |
-| images         | Array of images |
-
-### * Update Product
-
-`PUT |  /api/v1/products` 
-| Key            | Value           |
-| ---------      | -----------     |
-| name           | Product 1       |
-| description    | Description     |
-| richDescription| Rich Description|
-| image          | image           |
-| brand          | Brand 1         |
-| price          | 50              |
-| category       | {category_id}   |
-| countInStock   | 100             |
-| rating         | 4.5             |
-| numReviews     | 40              |
-| isFeatured     | true            |
-
-### * Delete Product
-
-`DELETE |  /api/v1/products/{id}`
-
-## Orders Routes
-
-### * Create Order
-
-`POST |  /api/v1/orders` 
+- **Body (JSON):**
 ```
 {
-	"orderItems":[
-		{
-			"quantity": 3,
-			"product" : "602e9c348e700335d8532b14"
-		},
-			{
-			"quantity": 2,
-			"product" : "602bde0161fcc409fc149734"
-		}
-	],
-	"shippingAddress1" : "No 45,Park Street",
-	"shippingAddress2" : "No 46,Main Street",
-	"city" : "Colombo",
-	"zip" : "10600t",
-	"country" : "Sri Lanka",
-	"phone" : "+94717185748",
-	"user" : "602e9b718e700335d8532b13"
+  "name": "Test User",
+  "email": "test123@example.com",
+  "password": "password",
+  "phone": "+947187521",
+  "isAdmin": false,
+  "street": "New Street",
+  "apartment": "Block D",
+  "zip": "10871",
+  "city": "Colombo",
+  "country": "SriLanka"
+}
+````
+
+Description: Registers a new user in the database. Use unique email to avoid duplicate errors.
+## 2. Login
+
+- **Method:** POST
+
+- **URL:** {{baseUrl}}/users/login
+
+- **Body (JSON):**
+```
+{
+  "email": "admin@admin.com",
+  "password": "password"
 }
 ```
-### * Get Orders
 
-`GET |  /api/v1/orders` 
+**Description:** Logs in the user and returns a JWT token for authentication.
 
-### * Get Single Order
+**Postman Test Script:** Save token and userId to environment variables:
+```
+let res = pm.response.json();
+pm.environment.set("token", res.token);
+pm.environment.set("userId", res.user._id);
+```
+## 3. Get All Users
 
-`GET |  /api/v1/orders/{id}` 
+- **Method:** GET
 
-### * Get Total Order Count
+- **URL:** {{baseUrl}}/users
 
-`GET |  /api/v1/orders/get/count`
+- **Headers:** Authorization: Bearer {{token}}
 
-### * Get Total Sales
+- **Description:** Fetches all registered users.
 
-`GET |  /api/v1/orders/get/totalsales`
+## 4. Get Single User
 
-### * Get User Order
+- **Method:** GET
 
-`GET |  /api/v1/orders/get/usersorders/{userid}`
+- **URL:** {{baseUrl}}/users/{{userId}}
 
-### * Update Single Order
+- **Headers:** Authorization: Bearer {{token}}
 
-`PUT |  /api/v1/orders/{id}` 
+- **Description:** Fetches a specific user by ID.
 
-### * Delete Single Order
+## 5. Other API Endpoints
 
-`DELETE |  /api/v1/orders/{id}` 
+- Use similar format for Products, Orders, etc.
 
-## Author
-[Dinush Chathurya](https://dinushchathurya.github.io/)
+- Ensure Authorization header is set using {{token}}.
 
-## License
+- Replace path variables with environment variables where required.
+## Testing Endpoints
 
-Copyright (c) 2020 <a href="https://dinushchathurya.github.io/">Dinush Chathurya</a> and <a href="https://codingtricks.io/">codingtricks.io</a>
+### User Routes
+| Method | Endpoint                | Description     |
+| ------ | ----------------------- | --------------- |
+| POST   | /api/v1/users/register  | Create User     |
+| POST   | /api/v1/users/login     | Login User      |
+| GET    | /api/v1/users           | Get All Users   |
+| GET    | /api/v1/users/{id}      | Get Single User |
+| DELETE | /api/v1/users/{id}      | Delete User     |
+| GET    | /api/v1/users/get/count | Get Users Count |
+### Category Routes
+| Method | Endpoint                | Description         |
+| ------ | ----------------------- | ------------------- |
+| POST   | /api/v1/categories      | Create Category     |
+| GET    | /api/v1/categories      | Get All Categories  |
+| GET    | /api/v1/categories/{id} | Get Single Category |
+| PUT    | /api/v1/categories/{id} | Update Category     |
+| DELETE | /api/v1/categories/{id} | Delete Category     |
 
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
+### Product Routes
+| Method | Endpoint                              | Description           |
+| ------ | ------------------------------------- | --------------------- |
+| POST   | /api/v1/products                      | Create Product        |
+| GET    | /api/v1/products                      | Get All Products      |
+| GET    | /api/v1/products/{id}                 | Get Single Product    |
+| PUT    | /api/v1/products                      | Update Product        |
+| DELETE | /api/v1/products/{id}                 | Delete Product        |
+| POST   | /api/v1/products/gallery-images/{id}  | Upload Product Images |
+| GET    | /api/v1/products/get/count            | Get Product Count     |
+| GET    | /api/v1/products/get/featured/{count} | Get Featured Products |
 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
+### Order Routes
+| Method | Endpoint                                | Description      |
+| ------ | --------------------------------------- | ---------------- |
+| POST   | /api/v1/orders                          | Create Order     |
+| GET    | /api/v1/orders                          | Get All Orders   |
+| GET    | /api/v1/orders/{id}                     | Get Single Order |
+| PUT    | /api/v1/orders/{id}                     | Update Order     |
+| DELETE | /api/v1/orders/{id}                     | Delete Order     |
+| GET    | /api/v1/orders/get/count                | Get Total Orders |
+| GET    | /api/v1/orders/get/totalsales           | Get Total Sales  |
+| GET    | /api/v1/orders/get/usersorders/{userid} | Get User Orders  |
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+## Notes
 
-## Blog
+- Always login first to get a valid token.
 
-https://codingtricks.io/
+- Use unique data for endpoints like registration to avoid duplicate key errors.
+
+- Environment variables like `{{token}}` and `{{userId}}` ensure secure and automated testing.
+
+- Never commit real secrets to GitHub; use placeholders in README.
 
 
-## 
-
-<p ><h2 align="center">Happy<i class="fa fa-heart" style="color:red;"></i> Coding<i class="fa fa-code" style="color:orange;"> </i></h2></p>
+### Author
+[**Dinush Chathurya**](https://github.com/dinushchathurya/nodejs-ecommerce-api.git)  
+Dockerized by [**Nahid Hasan**](https://github.com/NahidCSERU)
