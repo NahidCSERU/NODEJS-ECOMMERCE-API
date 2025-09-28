@@ -1,0 +1,433 @@
+{
+  "info": {
+    "name": "NodeJS E-Commerce API",
+    "description": "Postman collection for dinushchathurya/nodejs-ecommerce-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User - Register",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Admin\",\n  \"email\": \"admin@admin.com\",\n  \"password\": \"password\",\n  \"phone\": \"+947187520\",\n  \"isAdmin\": true,\n  \"street\": \"Main Street\",\n  \"apartment\": \"Block C\",\n  \"zip\": \"10870\",\n  \"city\": \"Colombo\",\n  \"country\": \"SriLanka\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/users/register",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "users", "register"]
+        }
+      }
+    },
+    {
+      "name": "User - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@admin.com\",\n  \"password\": \"password\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/users/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "users", "login"]
+        }
+      }
+    },
+    {
+      "name": "Get All Users",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/users",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "users"]
+        }
+      }
+    },
+    {
+      "name": "Get Single User",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/users/{{userId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "users", "{{userId}}"]
+        }
+      }
+    },
+    {
+      "name": "Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/users/{{userId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "users", "{{userId}}"]
+        }
+      }
+    },
+    {
+      "name": "Get User Count",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/users/get/count",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "users", "get", "count"]
+        }
+      }
+    },
+    {
+      "name": "Create Category",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Category 1\",\n  \"icon\": \"icon-health\",\n  \"color\": \"#55879\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/categories",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "categories"]
+        }
+      }
+    },
+    {
+      "name": "Get All Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/categories",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "categories"]
+        }
+      }
+    },
+    {
+      "name": "Update Category",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Category Updated\",\n  \"icon\": \"new-icon\",\n  \"color\": \"#000000\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/categories/{{catId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "categories", "{{catId}}"]
+        }
+      }
+    },
+    {
+      "name": "Delete Category",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/categories/{{catId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "categories", "{{catId}}"]
+        }
+      }
+    },
+    {
+      "name": "Create Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Product 1\",\n  \"description\": \"Description\",\n  \"richDescription\": \"Rich Description\",\n  \"image\": \"imageurl.jpg\",\n  \"brand\": \"Brand 1\",\n  \"price\": 50,\n  \"category\": \"{{catId}}\",\n  \"countInStock\": 100,\n  \"rating\": 4.5,\n  \"numReviews\": 40,\n  \"isFeatured\": true\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/products",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "products"]
+        }
+      }
+    },
+    {
+      "name": "Get All Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/products",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "products"]
+        }
+      }
+    },
+    {
+      "name": "Get Single Product",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/products/{{prodId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "products", "{{prodId}}"]
+        }
+      }
+    },
+    {
+      "name": "Get Product Count",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/products/get/count",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "products", "get", "count"]
+        }
+      }
+    },
+    {
+      "name": "Get Featured Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/products/get/featured/{{count}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "products", "get", "featured", "{{count}}"]
+        }
+      }
+    },
+    {
+      "name": "Upload Gallery Images",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "multipart/form-data" }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "images",
+              "type": "file",
+              "src": ["path/to/image1.jpg", "path/to/image2.jpg"]
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/products/gallery-images/{{prodId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "products", "gallery-images", "{{prodId}}"]
+        }
+      }
+    },
+    {
+      "name": "Update Product",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Product Updated\",\n  \"description\": \"Updated Desc\",\n  \"richDescription\": \"Updated Rich\",\n  \"image\": \"newimage.jpg\",\n  \"brand\": \"Brand 2\",\n  \"price\": 75,\n  \"category\": \"{{catId}}\",\n  \"countInStock\": 50,\n  \"rating\": 4.8,\n  \"numReviews\": 10,\n  \"isFeatured\": false\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/products/{{prodId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "products", "{{prodId}}"]
+        }
+      }
+    },
+    {
+      "name": "Delete Product",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/products/{{prodId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "products", "{{prodId}}"]
+        }
+      }
+    },
+    {
+      "name": "Create Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"orderItems\": [\n    { \"quantity\": 3, \"product\": \"{{prodId1}}\" },\n    { \"quantity\": 2, \"product\": \"{{prodId2}}\" }\n  ],\n  \"shippingAddress1\": \"No 45, Park Street\",\n  \"shippingAddress2\": \"No 46, Main Street\",\n  \"city\": \"Colombo\",\n  \"zip\": \"10600t\",\n  \"country\": \"Sri Lanka\",\n  \"phone\": \"+94717185748\",\n  \"user\": \"{{userId}}\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "orders"]
+        }
+      }
+    },
+    {
+      "name": "Get All Orders",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "orders"]
+        }
+      }
+    },
+    {
+      "name": "Get Single Order",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders/{{orderId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "orders", "{{orderId}}"]
+        }
+      }
+    },
+    {
+      "name": "Get Order Count",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders/get/count",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "orders", "get", "count"]
+        }
+      }
+    },
+    {
+      "name": "Get Total Sales",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders/get/totalsales",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "orders", "get", "totalsales"]
+        }
+      }
+    },
+    {
+      "name": "Get User Orders",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders/get/usersorders/{{userId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "orders", "get", "usersorders", "{{userId}}"]
+        }
+      }
+    },
+    {
+      "name": "Update Order",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"Delivered\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders/{{orderId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "orders", "{{orderId}}"]
+        }
+      }
+    },
+    {
+      "name": "Delete Order",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/orders/{{orderId}}",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "v1", "orders", "{{orderId}}"]
+        }
+      }
+    }
+  ]
+}
